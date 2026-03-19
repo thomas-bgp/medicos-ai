@@ -8,9 +8,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ backend/
 COPY frontend/ frontend/
 
-# Generate database at build time
-RUN python backend/seed.py
+# Create data directory and generate database at build time
+# seed.py doesn't need ANTHROPIC_API_KEY - it only uses sqlite3
+RUN mkdir -p data && python backend/seed.py
 
 EXPOSE 8000
+
+# Set default env var so pydantic-settings doesn't crash on startup without .env
+# The actual key is injected via Coolify environment variables at runtime
+ENV ANTHROPIC_API_KEY="placeholder-set-in-coolify"
 
 CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
