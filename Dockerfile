@@ -8,9 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ backend/
 COPY frontend/ frontend/
 
-# Create data directory and generate database at build time
-# seed.py doesn't need ANTHROPIC_API_KEY - it only uses sqlite3
-RUN mkdir -p data && python backend/seed.py
+# Create data directory and generate POA-only database at build time
+RUN mkdir -p data && python backend/seed_poa.py
 
 EXPOSE 8000
 

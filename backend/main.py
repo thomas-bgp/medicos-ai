@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from backend.config import settings
 from backend.routers.chat import router as chat_router
+from backend.routers.browse import router as browse_router
 
 
 @asynccontextmanager
@@ -47,6 +48,7 @@ async def healthz():
 
 # API routes
 app.include_router(chat_router)
+app.include_router(browse_router)
 
 # Serve the frontend as static files at "/"
 frontend_dir = os.path.join(os.path.dirname(__file__), "..", "frontend")

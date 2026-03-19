@@ -3,56 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MedicoAI - Encontre seu Médico</title>
+  <title>MedicoAI - Encontre Médicos em Porto Alegre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header>
-    <div class="header-inner">
-      <div class="header-icon">🩺</div>
-      <div class="header-text">
-        <span class="header-title">MedicoAI</span>
-        <span class="header-subtitle">Encontre médicos de confiança</span>
-      </div>
-    </div>
-  </header>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="#/" class="navbar-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="28" height="28" rx="8" fill="#1a365d"/>
+          <path d="M14 6v16M6 14h16" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="navbar-logo-text">MedicoAI</span>
+        <span class="navbar-badge">Beta · Porto Alegre/RS</span>
+      </a>
 
-  <main id="chat-wrapper">
-    <div id="chat-messages">
-
-      <div class="message bot">
-        <div class="avatar">🩺</div>
-        <div class="bubble-group">
-          <div class="bubble">
-            Olá! Sou o MedicoAI. Posso te ajudar a encontrar médicos, ver avaliações e indicar profissionais de confiança. O que você procura?
-          </div>
-          <div class="suggestion-chips" id="suggestion-chips">
-            <button class="chip" data-text="Melhor cardiologista em SP">Melhor cardiologista em SP</button>
-            <button class="chip" data-text="Médicos que aceitam Unimed">Médicos que aceitam Unimed</button>
-            <button class="chip" data-text="Dr. mais bem avaliado no Rio">Dr. mais bem avaliado no Rio</button>
-          </div>
-        </div>
+      <div class="navbar-search" id="navbar-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="navbar-search-input" placeholder="Buscar médico, especialidade..." autocomplete="off" />
       </div>
 
-    </div>
-  </main>
+      <div class="navbar-links">
+        <a href="#/especialidades" class="nav-link">Especialidades</a>
+        <a href="#/hospitais" class="nav-link">Hospitais</a>
+        <a href="#/chat" class="nav-link nav-link-ai">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Assistente IA
+        </a>
+      </div>
 
-  <footer>
-    <div class="footer-inner">
-      <input
-        type="text"
-        id="chat-input"
-        placeholder="Pergunte sobre médicos, avaliações, indicações..."
-        autocomplete="off"
-        autocorrect="off"
-        spellcheck="false"
-      />
-      <button id="send-btn" aria-label="Enviar mensagem">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+      <button class="navbar-menu-btn" id="navbar-menu-btn" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
+    </div>
+
+    <div class="navbar-mobile-menu" id="navbar-mobile-menu">
+      <a href="#/especialidades" class="nav-link-mobile">Especialidades</a>
+      <a href="#/hospitais" class="nav-link-mobile">Hospitais</a>
+      <a href="#/chat" class="nav-link-mobile">Assistente IA</a>
+      <div class="navbar-mobile-search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="navbar-mobile-search-input" placeholder="Buscar médico ou especialidade..." autocomplete="off" />
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== APP ROOT ===== -->
+  <div id="app"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#/" class="footer-logo">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="28" height="28" rx="8" fill="#1a365d"/>
+            <path d="M14 6v16M6 14h16" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          MedicoAI
+        </a>
+        <p class="footer-tagline">Plataforma em beta &mdash; Porto Alegre/RS</p>
+        <p class="footer-disclaimer">Dados para fins informativos. Consulte sempre seu médico.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <span class="footer-col-title">Navegar</span>
+          <a href="#/" class="footer-link">Início</a>
+          <a href="#/especialidades" class="footer-link">Especialidades</a>
+          <a href="#/hospitais" class="footer-link">Hospitais</a>
+          <a href="#/chat" class="footer-link">Assistente IA</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 MedicoAI. Todos os direitos reservados.</span>
     </div>
   </footer>
 
