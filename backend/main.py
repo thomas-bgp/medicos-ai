@@ -40,6 +40,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Health check
+@app.get("/healthz")
+async def healthz():
+    return {"status": "ok"}
+
 # API routes
 app.include_router(chat_router)
 
