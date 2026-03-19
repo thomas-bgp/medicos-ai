@@ -305,7 +305,8 @@ async function renderHome(app) {
   }).catch(() => {});
 
   // Load specialties
-  apiFetch('/especialidades').then(list => {
+  apiFetch('/especialidades').then(resp => {
+    const list = resp.especialidades || resp;
     const grid = document.getElementById('home-specialties');
     if (!grid) return;
     const shown = list.slice(0, 12);
@@ -325,7 +326,8 @@ async function renderHome(app) {
   });
 
   // Load hospitals
-  apiFetch('/hospitais').then(list => {
+  apiFetch('/hospitais').then(resp => {
+    const list = resp.hospitais || resp;
     const grid = document.getElementById('home-hospitals');
     if (!grid) return;
     const shown = list.slice(0, 8);
@@ -641,7 +643,8 @@ async function renderSpecialtiesPage(app) {
     </div>
   `;
   try {
-    const list = await apiFetch('/especialidades');
+    const resp = await apiFetch('/especialidades');
+    const list = resp.especialidades || resp;
     const grid = document.getElementById('all-specialties');
     if (!grid) return;
     grid.innerHTML = list.map(item => {
@@ -675,7 +678,8 @@ async function renderHospitalsPage(app) {
     </div>
   `;
   try {
-    const list = await apiFetch('/hospitais');
+    const resp = await apiFetch('/hospitais');
+    const list = resp.hospitais || resp;
     const grid = document.getElementById('all-hospitals');
     if (!grid) return;
     grid.innerHTML = list.map(item => `
