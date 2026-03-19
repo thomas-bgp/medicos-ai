@@ -1,0 +1,7 @@
+fastapi>=0.115.0
+uvicorn[standard]
+pydantic>=2.0
+pydantic-settings
+aiosqlite
+anthropic>=0.40
+python-dotenv

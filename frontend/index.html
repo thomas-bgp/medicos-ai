@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedicoAI - Encontre seu Médico</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-icon">🩺</div>
+      <div class="header-text">
+        <span class="header-title">MedicoAI</span>
+        <span class="header-subtitle">Encontre médicos de confiança</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="chat-wrapper">
+    <div id="chat-messages">
+
+      <div class="message bot">
+        <div class="avatar">🩺</div>
+        <div class="bubble-group">
+          <div class="bubble">
+            Olá! Sou o MedicoAI. Posso te ajudar a encontrar médicos, ver avaliações e indicar profissionais de confiança. O que você procura?
+          </div>
+          <div class="suggestion-chips" id="suggestion-chips">
+            <button class="chip" data-text="Melhor cardiologista em SP">Melhor cardiologista em SP</button>
+            <button class="chip" data-text="Médicos que aceitam Unimed">Médicos que aceitam Unimed</button>
+            <button class="chip" data-text="Dr. mais bem avaliado no Rio">Dr. mais bem avaliado no Rio</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="Pergunte sobre médicos, avaliações, indicações..."
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+      />
+      <button id="send-btn" aria-label="Enviar mensagem">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
